@@ -53,7 +53,7 @@ hexo.extend.filter.register('after_post_render', function (data) {
                         if (srcArray.length > 1)
                             srcArray.shift();
                         src = srcArray.join('/');
-                        var imgSrc = (config.cdn_url ? config.cdn_url : '') + config.root + (config.branch ? config.branch + '/' : '') + link + src.split('/').pop();
+                        var imgSrc = (config.cdn_url ? config.cdn_url : '') + config.root + (config.branch ? config.branch + '/' : '') + link + srcArray[srcArray.length - 1];
                         $(this).attr('src', imgSrc);
                         console.info && console.info("update link as:-->" + imgSrc);
                     }
