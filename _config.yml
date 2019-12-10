@@ -13,9 +13,9 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://blog.qlsmc.xyz
-root: /
-cdn_url: https://blog.qlsmc.xyz
+#url: https://blog.qlsmc.xyz
+root: /blog/
+#cdn_url: https://www.qlsmc.xyz
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
