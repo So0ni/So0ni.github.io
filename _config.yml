@@ -16,7 +16,7 @@ timezone: Asia/Shanghai
 #url: https://blog.qlsmc.xyz
 #root: /blog/
 cdn_url: https://raw.githubusercontent.com/So0ni
-branch: gh-pages
+branch: so0ni.github.io/master
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
