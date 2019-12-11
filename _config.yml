@@ -14,7 +14,7 @@ timezone: Asia/Shanghai
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 #url: https://blog.qlsmc.xyz
-root: /blog/
+#root: /blog/
 cdn_url: https://raw.githubusercontent.com/So0ni
 branch: gh-pages
 permalink: :year/:month/:day/:title/
