@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>没有干货</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?5db7d6949cb6e2ddc3c1c6a7b30e8e09";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <div class="header-title">
+
+        </div>
+        <nav class="header-nav">
+            
+                <a href="/" class="header-nav-link">
+                    首页
+                </a>
+            
+
+            
+                <a href="/archives" class="header-nav-link">
+                    归档
+                </a>
+            
+
+            
+                <a href="/tags" class="header-nav-link">
+                    标签
+                </a>
+            
+
+            
+                <a href="/about/" class="header-nav-link">
+                    关于
+                </a>
+            
+        </nav>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">Sonic Young's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+            <h2 class="title">记第一次WRF运转</h2>
+            <div class="post-meta">
+                <span class="post-time">2018-11-30</span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境"><span class="toc-text">环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始"><span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件准备"><span class="toc-text">文件准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行WPS"><span class="toc-text">运行WPS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行WRF"><span class="toc-text">运行WRF</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绘图"><span class="toc-text">绘图</span></a></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>WRFV3.9.1.1 smpar单机并行</li>
+<li>WPSV3.9.1 单机串行</li>
+</ul>
+<a id="more"></a>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="文件准备"><a href="#文件准备" class="headerlink" title="文件准备"></a>文件准备</h3><p>将</p>
+<ul>
+<li>geog_minimum.tar.bz2</li>
+<li>orogwd_10m.tar.bz2</li>
+<li>orogwd_10m.tar.bz2</li>
+</ul>
+<p>三个文件复制到<code>/home/sonic/WPS_GEOG/</code>中（先创建文件夹<code>WPS_GEOG</code>）（该路径为地形数据文件路径，需要在<code>namelist.wps</code>中设置），然后采用下述命令解压：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -jxvf geog_minimum.tar.bz2</span><br><span class="line">tar -jxvf orogwd_10m.tar.bz2</span><br><span class="line">tar -jxvf orogwd_10m.tar.bz2</span><br></pre></td></tr></table></figure>
+<p>然后选一次个例数据(这里我们选择megi)，将个例文件夹中的<code>fnl_*</code>文件复制或移动到<code>/home/sonic/data/mega/</code>文件夹中。</p>
+<blockquote>
+<p>超强台风鲇鱼(Megi编号1013)；2010年太平洋台风季最强风暴。该台风产生于2010年10月11日，18日登陆菲律宾吕宋岛，23日登陆中国福建，24日消散。</p>
+</blockquote>
+<hr>
+<h3 id="运行WPS"><a href="#运行WPS" class="headerlink" title="运行WPS"></a>运行WPS</h3><p>现在切换到WPS目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim namelist.wps</span><br></pre></td></tr></table></figure>
+<p>配置<code>namelist.wps</code>文件</p>
+<p>将<code>start_date</code> <code>end_date</code> 按需修改</p>
+<p><code>geog_data_path</code>项改为<code>&#39;/home/sonic/WPS_GEOG/&#39;</code></p>
+<blockquote>
+<p>注意： WPS从V3.8开始，将GEOG地形数据场插值数据源换成了<br><code>30-arc-second USGS GMTED2010</code> <code>MODIS FPAR</code> <code>21-class MODIS</code>。<br>如果需要使用V3.7以及之前的地形文件数据，需要把<code>namelist.wps</code>文件中的<br><code>geog_data_res</code>选项设置为<code>&#39;gtopo_10m+usgs_10m+nesdis_greenfrac+10m&#39;,&#39;gtopo_2m+usgs_2m+nesdis_greenfrac+2m&#39;,</code>。<br>之前版本的<code>geog_data_res=&#39;10m&#39;,&#39;2m&#39;,</code>不再可用。</p>
+</blockquote>
+<p>这里我们使用的地形数据是老版本的，所以需要把<code>geog_data_res</code>设置为<code>&#39;gtopo_10m+usgs_10m+nesdis_greenfrac+10m&#39;,&#39;gtopo_2m+usgs_2m+nesdis_greenfrac+2m&#39;,</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./geogrid.exe</span><br></pre></td></tr></table></figure>
+<p>处理地形资料和网格数据，生成<code>geo_em.d01(d02, d03,,,).nc</code>文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -sf ungrib/Variable_Tables/Vtable.GFS Vtable</span><br></pre></td></tr></table></figure>
+<p>链接我们需要的Vtable</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./link_grib.csh   /home/sonic/data/mega/fnl_*</span><br></pre></td></tr></table></figure>
+<p>链接外部数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ungrib.exe</span><br></pre></td></tr></table></figure>
+<p>解码GRIB资料，得到气象要素场。生成<code>FILE*</code>为前缀的中间文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./metgrid.exe</span><br></pre></td></tr></table></figure>
+<p>将气象要素场水平插值到地形资料上。生成类似<code>met_em.d01.*</code>文件。</p>
+<hr>
+<h3 id="运行WRF"><a href="#运行WRF" class="headerlink" title="运行WRF"></a>运行WRF</h3><p>切换到<code>WRFV3/test/em_real</code>目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -sf ../../../WPS/met_em*  .</span><br></pre></td></tr></table></figure>
+<p>将资料文件链接过来。</p>
+<p>修改<code>namelist.input</code>，按需配置运行时间 起始时间 结束时间。</p>
+<p>将<code>gwd_opt</code> 配置成<code>0</code>，<code>num_land_cat</code>配置成<code>24</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./real.exe</span><br></pre></td></tr></table></figure>
+<p>生成<code>wrfbdy_d01*</code>,<code>wrfinput_d01*</code>文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./wrf.exe</span><br></pre></td></tr></table></figure>
+<p>即可看到运行状态。运行完成之后生成<code>wrfout***</code>文件。</p>
+<p>到此就成功运行了WRF和WPS。</p>
+<hr>
+<h2 id="绘图"><a href="#绘图" class="headerlink" title="绘图"></a>绘图</h2><p>使用ncl官网提供的绘图脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">;   Example script to produce plots for a WRF real-data run,</span><br><span class="line">;   with the ARW coordinate dynamics option.</span><br><span class="line"></span><br><span class="line">load &quot;$NCARG_ROOT/lib/ncarg/nclscripts/csm/gsn_code.ncl&quot;</span><br><span class="line">load &quot;$NCARG_ROOT/lib/ncarg/nclscripts/wrf/WRFUserARW.ncl&quot;</span><br><span class="line">;load &quot;./WRFUserARW.ncl&quot;</span><br><span class="line"></span><br><span class="line">begin</span><br><span class="line">;</span><br><span class="line">; The WRF ARW input file.  </span><br><span class="line">; This needs to have a &quot;.nc&quot; appended, so just do it.</span><br><span class="line">  a = addfile(&quot;./wrfout_d01_2010-10-15_000000.nc&quot;,&quot;r&quot;)</span><br><span class="line"></span><br><span class="line">; We generate plots, but what kind do we prefer?</span><br><span class="line">  type = &quot;x11&quot;</span><br><span class="line">; type = &quot;pdf&quot;</span><br><span class="line">; type = &quot;ps&quot;</span><br><span class="line">; type = &quot;ncgm&quot;</span><br><span class="line">  wks = gsn_open_wks(type,&quot;plt_Surface1&quot;)</span><br><span class="line"></span><br><span class="line">; Set some basic resources</span><br><span class="line">  res = True</span><br><span class="line">  res@MainTitle                   = &quot;WRF-megi&quot;</span><br><span class="line"></span><br><span class="line">  pltres = True</span><br><span class="line">  mpres = True</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span><br><span class="line">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span><br><span class="line"></span><br><span class="line">; What times and how many time steps are in the data set?</span><br><span class="line">  times = wrf_user_getvar(a,&quot;times&quot;,-1)  ; get all times in the file</span><br><span class="line">  ntimes = dimsizes(times)         ; number of times in the file</span><br><span class="line"></span><br><span class="line">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span><br><span class="line"></span><br><span class="line">  do it = 0,ntimes-1,2             ; TIME LOOP</span><br><span class="line"></span><br><span class="line">    print(&quot;Working on time: &quot; + times(it) )</span><br><span class="line">    res@TimeLabel = times(it)   ; Set Valid time to use on plots</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span><br><span class="line">; First get the variables we will need        </span><br><span class="line"></span><br><span class="line">    slp = wrf_user_getvar(a,&quot;slp&quot;,it)    ; slp</span><br><span class="line">      wrf_smooth_2d( slp, 3 )            ; smooth slp</span><br><span class="line">    tc = wrf_user_getvar(a,&quot;tc&quot;,it)      ; 3D tc </span><br><span class="line">    td = wrf_user_getvar(a,&quot;td&quot;,it)      ; 3D td </span><br><span class="line">    u  = wrf_user_getvar(a,&quot;ua&quot;,it)      ; 3D U at mass points</span><br><span class="line">    v  = wrf_user_getvar(a,&quot;va&quot;,it)      ; 3D V at mass points</span><br><span class="line">    td2 =  wrf_user_getvar(a,&quot;td2&quot;,it)   ; Td2 in C</span><br><span class="line">    tc2 = wrf_user_getvar(a,&quot;T2&quot;,it)     ; T2 in Kelvin</span><br><span class="line">       tc2 = tc2-273.16                  ; T2 in C</span><br><span class="line">    u10 = wrf_user_getvar(a,&quot;U10&quot;,it)    ; u at 10 m, mass point</span><br><span class="line">    v10 = wrf_user_getvar(a,&quot;V10&quot;,it)    ; v at 10 m, mass point</span><br><span class="line"></span><br><span class="line">     tc2@description = &quot;Surface Temperature&quot;</span><br><span class="line">     tc2@units = &quot;C&quot;</span><br><span class="line"></span><br><span class="line">     td2@description = &quot;Surface Dew Point Temp&quot; </span><br><span class="line">     td2@units = &quot;C&quot;</span><br><span class="line"></span><br><span class="line">     u10@units = &quot;m/s&quot;</span><br><span class="line">     v10@units = &quot;m/s&quot;</span><br><span class="line"></span><br><span class="line">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span><br><span class="line"></span><br><span class="line">    ; Plotting options for T                </span><br><span class="line">      opts = res                         </span><br><span class="line">      opts@cnFillOn = True  </span><br><span class="line">      opts@ContourParameters = (/ 12., 30., 2./)</span><br><span class="line">      opts@gsnSpreadColorEnd = -3  ; End third from the last color in color map</span><br><span class="line">      contour_tc = wrf_contour(a,wks,tc2,opts)</span><br><span class="line">      delete(opts)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ; Plotting options for Td</span><br><span class="line">;      opts = res         </span><br><span class="line">;      opts@cnFillOn = True </span><br><span class="line">;      opts@cnLinesOn = True</span><br><span class="line">;      opts@cnLineLabelsOn = True</span><br><span class="line">;      opts@ContourParameters = (/ 10., 30., 2./) </span><br><span class="line">;      opts@cnLineLabelBackgroundColor = -1</span><br><span class="line">;      opts@gsnSpreadColorEnd = -3  ; End third from the last color in color map</span><br><span class="line">;      contour_td = wrf_contour(a,wks,td2,opts)</span><br><span class="line">;      delete(opts)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ; Plotting options for SLP                     </span><br><span class="line">      opts = res         </span><br><span class="line">      opts@cnLineColor = &quot;Blue&quot;</span><br><span class="line">      opts@cnHighLabelsOn = True</span><br><span class="line">      opts@cnLowLabelsOn = True</span><br><span class="line">      opts@ContourParameters = (/ 900., 1100., 2.5 /)</span><br><span class="line">      opts@cnLineLabelBackgroundColor = -1</span><br><span class="line">      opts@gsnContourLineThicknessesScale = 2.0</span><br><span class="line">      contour_psl = wrf_contour(a,wks,slp,opts)</span><br><span class="line">      delete(opts)</span><br><span class="line"></span><br><span class="line">    ; Plotting options for Wind Vectors                 </span><br><span class="line">      opts = res         </span><br><span class="line">      opts@FieldTitle = &quot;Wind&quot;       ; overwrite Field Title</span><br><span class="line">      opts@NumVectors = 47           ; density of wind barbs</span><br><span class="line">      vector = wrf_vector(a,wks,u10,v10,opts)</span><br><span class="line">      delete(opts)</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">    ; MAKE PLOTS                                       </span><br><span class="line">      plot = wrf_map_overlays(a,wks,(/contour_tc,contour_psl,vector/),pltres,mpres)</span><br><span class="line">;      plot = wrf_map_overlays(a,wks,(/contour_td,vector/),pltres,mpres)</span><br><span class="line"></span><br><span class="line">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span><br><span class="line"></span><br><span class="line">  end do        ; END OF TIME LOOP</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>最后可得到结果</p>
+<p><img src="https://raw.githubusercontent.com/So0ni/gh-pages/2018/11/30/wrf-first-running/1.jpg" alt="1"></p>
+<p><img src="https://raw.githubusercontent.com/So0ni/gh-pages/2018/11/30/wrf-first-running/2.jpg" alt="2"></p>
+
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/meteorology/" title="meteorology">meteorology</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2018/12/01/wrf-configuration/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">WRF和WPS部分配置选项简介</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2018/11/29/wrf-installation/">
+                <span class="nav-default">Ubuntu 18.04 x64 单机多核并行WRF和WPS编译安装</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container"></div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2019
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a href="#">Sonic Young</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a rel="nofollow" target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+
+
+</html>

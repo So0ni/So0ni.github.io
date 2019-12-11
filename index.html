@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>没有干货</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?5db7d6949cb6e2ddc3c1c6a7b30e8e09";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <div class="header-title">
+
+        </div>
+        <nav class="header-nav">
+            
+                <a href="/" class="header-nav-link">
+                    首页
+                </a>
+            
+
+            
+                <a href="/archives" class="header-nav-link">
+                    归档
+                </a>
+            
+
+            
+                <a href="/tags" class="header-nav-link">
+                    标签
+                </a>
+            
+
+            
+                <a href="/about/" class="header-nav-link">
+                    关于
+                </a>
+            
+        </nav>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">Sonic Young's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/2018/12/01/windows-wsl-start/">初探Win10 WSL(Windows Subsystem for Linux)</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2018-12-01</span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>做气象方面的研究很多时候需要Linux环境，然而很多时候Cygwin却很不好用。<br>如果装双系统来回切换，也是很麻烦。用虚拟机又担心性能损耗。</p>
+<p>那么对于用Win10的同学来说，救星就是WSL(Windows Subsystem for Linux)。</p>
+<blockquote>
+<p>WSL(Windows Subsystem for Linux) 适用于Linux的Windows子系统</p>
+</blockquote>
+<p>现在NCL官网也推荐win10用户使用WSL了。(实测安装NCL、Grads和WRF毫无问题，之前那篇WRF编译安装的文章就是基于WSL进行)</p>
+                    <div class="read-more">
+                        <a href="/2018/12/01/windows-wsl-start/" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/2018/12/01/fortran-vectorization/">fortran向量化简单教程</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2018-12-01</span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <blockquote>
+<p>这是一篇我去年写的简单向量化教程，转上来放着吧。</p>
+</blockquote>
+<hr>
+<h2 id="为什么要向量化"><a href="#为什么要向量化" class="headerlink" title="为什么要向量化"></a>为什么要向量化</h2><p>想到这个问题是因为最近上机实习，写了不少代码，也看了不少人写的代码。实习常常写出这种代码。</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> k=<span class="number">1</span>,<span class="number">3</span></span><br><span class="line">    <span class="keyword">do</span> i=<span class="number">1</span>,<span class="number">180</span></span><br><span class="line">        <span class="keyword">do</span> j=<span class="number">1</span>,<span class="number">89</span></span><br><span class="line">            <span class="keyword">do</span> it=<span class="number">1</span>,<span class="number">55</span></span><br><span class="line">                num=num+ddi(it,k)</span><br><span class="line">                aa=aa+sst_m(i,j,<span class="number">12</span>*(it+<span class="number">2</span>)+<span class="number">12</span>)*ddi(it,k)</span><br><span class="line">                sst_p(i,j,k)=aa</span><br><span class="line">                bb=bb+sst_m(i,j,<span class="number">12</span>*(it+<span class="number">2</span>)+<span class="number">12</span>)</span><br><span class="line">                sstave(i,j)=bb</span><br><span class="line">            <span class="keyword">end</span> <span class="keyword">do</span></span><br><span class="line">            ave_p(i,j,k)=sst_p(i,j,k)/num</span><br><span class="line">        <span class="keyword">end</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">do</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">do</span></span><br></pre></td></tr></table></figure>
+<p>这么多循环我要怎么看清楚谁是谁，谁又用来干什么。。。</p>
+<p>然而这段已经是被精简过，且有良好缩进了，却依然较难看出每一个变量用来干什么。难道就没有什么办法再精简再让逻辑更加清晰吗？</p>
+<hr>
+<p>这时候我们就需要<code>向量化</code>。</p>
+<p>向量化有什么好处？</p>
+<ul>
+<li>减少循环嵌套的层数，极大的精简我们的代码</li>
+<li>获得更加清晰的逻辑</li>
+<li>加快运算速度</li>
+</ul>
+                    <div class="read-more">
+                        <a href="/2018/12/01/fortran-vectorization/" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/2018/12/01/wrf-configuration/">WRF和WPS部分配置选项简介</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2018-12-01</span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><h2 id="What-is-WRF"><a href="#What-is-WRF" class="headerlink" title="What is WRF?"></a>What is WRF?</h2><ul>
+<li>WRF: Weather Research and Forecasting Model<ul>
+<li>用途：研究 and 预报</li>
+<li>ARW（the Advanced Research WRF）</li>
+<li>NMM（the Nonhydrostatic Mesoscale Model）</li>
+<li>由许多美国研究部门及大学的科学家公共参与进行开发研究的新一代中尺度预报模式和同化系统</li>
+</ul>
+</li>
+</ul>
+<h2 id="What-is-ARW-and-NMM"><a href="#What-is-ARW-and-NMM" class="headerlink" title="What is ARW and NMM?"></a>What is ARW and NMM?</h2><p>两个动力内核：</p>
+<ul>
+<li>The Advanced Research WRF (ARW) </li>
+<li>Nonhydrostatic Mesoscale Model (NMM)</li>
+</ul>
+<p>动力内核包括： </p>
+<ul>
+<li>对流advection</li>
+<li>气压梯度pressure-gradients</li>
+<li>科氏力Coriolis</li>
+<li>浮力buoyancy</li>
+<li>滤波filters</li>
+<li>耗散diffusion</li>
+<li>时间积分time-stepping</li>
+<li>地形跟随的垂直坐标系</li>
+</ul>
+<blockquote>
+<p>物理过程，软件框架和部分的数据前处理和后处理都可以在两个动力内核之间共享。<br></p></blockquote>
+                    <div class="read-more">
+                        <a href="/2018/12/01/wrf-configuration/" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/2018/11/30/wrf-first-running/">记第一次WRF运转</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2018-11-30</span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>WRFV3.9.1.1 smpar单机并行</li>
+<li>WPSV3.9.1 单机串行</li>
+</ul>
+                    <div class="read-more">
+                        <a href="/2018/11/30/wrf-first-running/" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/2018/11/29/wrf-installation/">Ubuntu 18.04 x64 单机多核并行WRF和WPS编译安装</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2018-11-29</span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <p>WRF全称Weather Research and Forecasting Model, 是一个天气研究与预报模型.可以用来进行精细尺度的天气模拟与预报。<br>WPS全称WRF Pre-processing System，即WRF预处理系统，用来为WRF模型准备输入数据；<br>如果只是做理想实验(idealized modeling)，就不需要用WPS处理真实数据。</p>
+<p>除了WPS与WRF两大核心模块外，WRF系统还有很多附加模块：比如用于数据同化的WRF-DA，用于化学传输的WRF-chem，用于林火模拟的WRF-fire。</p>
+<h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><ul>
+<li>Ubuntu 18.04 x64 LTS</li>
+<li>Intel Core i5-4210M</li>
+</ul>
+                    <div class="read-more">
+                        <a href="/2018/11/29/wrf-installation/" class="read-more-link">
+                            阅读全文
+                            <i class="iconfont icon-readmore"></i>
+                        </a>
+                    </div>
+                
+            </div>
+        </article>
+    
+        <article class="post-abstract">
+            <div class="post-title">
+                <h2><a class="post-title-link" href="/2018/11/29/site-changelog/">更新日志</a></h2>
+            </div>
+            <div class="post-meta">
+                <span class="post-time">2018-11-29</span>
+                
+            </div>
+            <div class="post-content">
+                
+                    <p><strong>2019/4/10 :</strong>  工具站<a href="https://tool.qlsmc.xyz" target="_blank" rel="noopener">tool.qlsmc.xyz</a>全站使用 React + Antd + umi 重写。<br><a href="https://tool.qlsmc.xyz/weatherchart" target="_blank" rel="noopener">天气分析图查看器</a>处于正式发布状态。<br><a href="https://tool.qlsmc.xyz/gpa" target="_blank" rel="noopener">绩点计算器</a>处于正式发布状态。<br><a href="https://tool.qlsmc.xyz/estimate" target="_blank" rel="noopener">评教工具</a>处于有限开发状态。</p>
+<p><strong>2018/11/29 :</strong>  工具站博客<a href="https://tool.qlsmc.xyz/blog" target="_blank" rel="noopener">tool.qlsmc.xyz/blog</a>上线(hexo)。<br>并在同日发表第一篇文章记录WRF模式安装。</p>
+<p><strong>2018/11/28 :</strong>  第三款工具<a href="https://tool.qlsmc.xyz/estimate.html" target="_blank" rel="noopener">NUIST-一键评教</a>上线。</p>
+<p><strong>2018/11/27 :</strong>  第二款工具<a href="https://tool.qlsmc.xyz/gpa.html" target="_blank" rel="noopener">NUIST-GPA计算器</a>上线。</p>
+<p><strong>2017/03/？ :</strong>  工具站构建于阿里云ECS(1C1G1M)，绑定域名<code>tool.qlsmc.xyz</code>。<br>第一款工具<a href="https://tool.qlsmc.xyz/" target="_blank" rel="noopener">天气分析图查看器</a>上线。</p>
+
+                
+            </div>
+        </article>
+    
+</div>
+<div class="paginator">
+    
+        
+        
+    
+</div>
+
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2019
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a href="#">Sonic Young</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a rel="nofollow" target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+
+
+</html>

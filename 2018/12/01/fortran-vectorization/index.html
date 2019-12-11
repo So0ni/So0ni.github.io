@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>没有干货</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?5db7d6949cb6e2ddc3c1c6a7b30e8e09";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <div class="header-title">
+
+        </div>
+        <nav class="header-nav">
+            
+                <a href="/" class="header-nav-link">
+                    首页
+                </a>
+            
+
+            
+                <a href="/archives" class="header-nav-link">
+                    归档
+                </a>
+            
+
+            
+                <a href="/tags" class="header-nav-link">
+                    标签
+                </a>
+            
+
+            
+                <a href="/about/" class="header-nav-link">
+                    关于
+                </a>
+            
+        </nav>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">Sonic Young's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+            <h2 class="title">fortran向量化简单教程</h2>
+            <div class="post-meta">
+                <span class="post-time">2018-12-01</span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要向量化"><span class="toc-text">为什么要向量化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是向量化"><span class="toc-text">什么是向量化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何向量化"><span class="toc-text">如何向量化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#首先我们来了解一下数组的进阶用法"><span class="toc-text">首先我们来了解一下数组的进阶用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数组切片"><span class="toc-text">数组切片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#批量赋值"><span class="toc-text">批量赋值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#向量函数"><span class="toc-text">向量函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#where语句"><span class="toc-text">where语句</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#来试试"><span class="toc-text">来试试</span></a></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <blockquote>
+<p>这是一篇我去年写的简单向量化教程，转上来放着吧。</p>
+</blockquote>
+<hr>
+<h2 id="为什么要向量化"><a href="#为什么要向量化" class="headerlink" title="为什么要向量化"></a>为什么要向量化</h2><p>想到这个问题是因为最近上机实习，写了不少代码，也看了不少人写的代码。实习常常写出这种代码。</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> k=<span class="number">1</span>,<span class="number">3</span></span><br><span class="line">    <span class="keyword">do</span> i=<span class="number">1</span>,<span class="number">180</span></span><br><span class="line">        <span class="keyword">do</span> j=<span class="number">1</span>,<span class="number">89</span></span><br><span class="line">            <span class="keyword">do</span> it=<span class="number">1</span>,<span class="number">55</span></span><br><span class="line">                num=num+ddi(it,k)</span><br><span class="line">                aa=aa+sst_m(i,j,<span class="number">12</span>*(it+<span class="number">2</span>)+<span class="number">12</span>)*ddi(it,k)</span><br><span class="line">                sst_p(i,j,k)=aa</span><br><span class="line">                bb=bb+sst_m(i,j,<span class="number">12</span>*(it+<span class="number">2</span>)+<span class="number">12</span>)</span><br><span class="line">                sstave(i,j)=bb</span><br><span class="line">            <span class="keyword">end</span> <span class="keyword">do</span></span><br><span class="line">            ave_p(i,j,k)=sst_p(i,j,k)/num</span><br><span class="line">        <span class="keyword">end</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">do</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">do</span></span><br></pre></td></tr></table></figure>
+<p>这么多循环我要怎么看清楚谁是谁，谁又用来干什么。。。</p>
+<p>然而这段已经是被精简过，且有良好缩进了，却依然较难看出每一个变量用来干什么。难道就没有什么办法再精简再让逻辑更加清晰吗？</p>
+<hr>
+<p>这时候我们就需要<code>向量化</code>。</p>
+<p>向量化有什么好处？</p>
+<ul>
+<li>减少循环嵌套的层数，极大的精简我们的代码</li>
+<li>获得更加清晰的逻辑</li>
+<li>加快运算速度</li>
+</ul>
+<a id="more"></a>
+<hr>
+<h2 id="什么是向量化"><a href="#什么是向量化" class="headerlink" title="什么是向量化"></a>什么是向量化</h2><p>向量化计算是一种特殊的并行计算的方式。更多高深的解释语言我就不多说了，来我们看例子。</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">real</span> A(<span class="number">144</span>,<span class="number">72</span>),B(<span class="number">144</span>,<span class="number">72</span>),R</span><br><span class="line">A = <span class="number">4.0</span></span><br><span class="line">B = A*<span class="number">2</span> + A**<span class="number">2</span> - A/<span class="number">2</span> + A</span><br><span class="line">R = <span class="built_in">sum</span>(B)</span><br></pre></td></tr></table></figure>
+<p>这就是所谓的向量化了</p>
+<hr>
+<h2 id="如何向量化"><a href="#如何向量化" class="headerlink" title="如何向量化"></a>如何向量化</h2><p>还是以上面那个例子来说</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">real</span> A(<span class="number">144</span>,<span class="number">72</span>),B(<span class="number">144</span>,<span class="number">72</span>),C(<span class="number">10</span>,<span class="number">10</span>),r</span><br><span class="line">A = <span class="number">4.0</span></span><br><span class="line">B = A*<span class="number">2</span> + A**<span class="number">2</span> - A/<span class="number">2</span> + A</span><br><span class="line">C = B(<span class="number">1</span>:<span class="number">10</span>,<span class="number">1</span>:<span class="number">10</span>)</span><br><span class="line">A = <span class="built_in">cos</span>(A)</span><br><span class="line">r = <span class="built_in">sum</span>(B)</span><br></pre></td></tr></table></figure>
+<h3 id="首先我们来了解一下数组的进阶用法"><a href="#首先我们来了解一下数组的进阶用法" class="headerlink" title="首先我们来了解一下数组的进阶用法"></a>首先我们来了解一下数组的进阶用法</h3><h4 id="数组切片"><a href="#数组切片" class="headerlink" title="数组切片"></a>数组切片</h4><blockquote>
+<p>数组切片就是将一个更大的数组切成小一些的数组，就像切蛋糕一样。</p>
+</blockquote>
+<p>  我们先回忆一下，我们选取一个数组某一个值得时候怎么做的呢？比如我们要选取A数组的第三行第四列<br>  的那个数值，我们会这样用<code>A(3,4)</code>,这是数组的基本用法，相信大家都会用。</p>
+<p>  可是，如果我想选取A数组的第三行，第四第五两列的两个数据该怎么做呢？</p>
+<p>  我们可以使用<code>A(3,4:5)</code></p>
+<p>  原来乳此！ 那么<code>B(1:10,1:10)</code>的意思就是切取B数组的第一至十行，第一至十列共10行10列100个数据。</p>
+<p>  如果需要选所有行的第一列呢？ 那我们不指定数组就好啦~ A(:,1)</p>
+<hr>
+<h4 id="批量赋值"><a href="#批量赋值" class="headerlink" title="批量赋值"></a>批量赋值</h4><blockquote>
+<p><code>A=4.0</code>是什么？为什么一个标量可以对一个数组赋值？</p>
+</blockquote>
+<p>  我们可以看到<code>A B</code>都是维度为(144,72)的实数数组，<code>r</code>是一个实数</p>
+<p>  那么提问：通常情况下，要将一个数组赋值为0，要怎么做呢？</p>
+<p>  我知道我知道！用循环啊，这么简单的事怎么难得住我。</p>
+<p>  没错，如果你会C语言，第一想法肯定是用两个循环逐一赋值为0。 </p>
+<p>  可是我们强大的fortran怎么能这么简易呢？</p>
+<p>  看到这里你肯定猜到了。</p>
+<p>  <code>A = 4.0</code>作用就是将A数组全部赋值为4.0，那么如果<code>A = 0.0</code>那么我们就能将A全部赋值为0了。</p>
+<blockquote>
+<p>那<code>A*2</code>是什么呢？</p>
+</blockquote>
+<p>  <code>A*2</code>就是A的每个元素单独<code>*2</code>，结果与A同维度，跟数学中的矩阵与标量相乘类似。<br>  同理，<code>A**2</code>是对A的每个元素单独求二次方，结果也同样与A同维度。</p>
+<p>  机智的同学可能已经猜出来了，<code>A + A</code>也与数学中矩阵运算相似，结果与<code>2*A</code>相等。</p>
+<p>  到这里，想必各位同学都清楚了，普通的运算符在两个<em>同等维度</em>的数组之间是逐元运算，<br>  也就是对应位置的计算。标量与数组之间是广播运算，标量对数组全体起作用。</p>
+<p>  所有fortran内置函数均支持对数组进行逐元运算，就如<code>A=cos(A)</code>一样。</p>
+<hr>
+<h4 id="向量函数"><a href="#向量函数" class="headerlink" title="向量函数"></a>向量函数</h4><blockquote>
+<p><code>sum()</code>是什么呢?</p>
+</blockquote>
+<p>  就如这个函数的名字。sum函数是fortran自带的函数，用于数组求和。</p>
+<p>  最基础的用法即是<code>r = sum(B)</code>，可以求得B数组所有元素的和。</p>
+<blockquote>
+<p>sum的进阶用法</p>
+</blockquote>
+<p>  sum的进阶用法依赖于数组的进阶用法，聪明的同学想必已经想到了。我们可以有sum(A(:,10))这种用法。</p>
+<p>  我们可以使用sum的第二个参数指定加哪一个维度。</p>
+<p>  通常我们需要求取全球气温场的多年平均</p>
+  <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">real</span> t(<span class="number">144</span>,<span class="number">73</span>,<span class="number">60</span>),ave(<span class="number">144</span>,<span class="number">73</span>)</span><br><span class="line">略过读取</span><br><span class="line">ave = <span class="built_in">sum</span>(t,<span class="number">3</span>)/<span class="number">60.0</span></span><br></pre></td></tr></table></figure>
+<p>  什么？一句话解决？？</p>
+<p>  是的没错就是一句话解决</p>
+<p>  通过给sum函数指定求和维度，<code>sum(t,3)</code>等价于</p>
+  <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> i=<span class="number">1</span>,<span class="number">144</span></span><br><span class="line">    <span class="keyword">do</span> j=<span class="number">1</span>,<span class="number">73</span></span><br><span class="line">        <span class="built_in">sum</span>(i,j,:)</span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">do</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">do</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="where语句"><a href="#where语句" class="headerlink" title="where语句"></a><code>where</code>语句</h4><p>  再来考虑一下以下场景：</p>
+<p>  <code>sst(144,73)</code>是一个多年平均海表温度场，其中陆地格点的值为999。现在我们需要把陆地格点的值替换为0，同时将<code>mask(144,73)</code>中相同位置的数据置为1。</p>
+<p>  通常情况下还是会使用一个两层嵌套进行遍历，然后将符合条件的格点进行处理。</p>
+<p>  这种情况我们可以使用where语句</p>
+  <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span>(sst==<span class="number">999</span>)</span><br><span class="line">    sst = <span class="number">0</span></span><br><span class="line">    mask = <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">where</span></span><br></pre></td></tr></table></figure>
+<p>  怎么能这么短。。。。！</p>
+<hr>
+<h2 id="来试试"><a href="#来试试" class="headerlink" title="来试试"></a>来试试</h2><p>你可以尽量用你能接受的方式来逐步向量化，不一定需要一步就去掉所有的循环。加油</p>
+<ol>
+<li><code>t1(144,73,12)</code>是某一年的每月平均气温，我们需要求取全年平均气温，应该怎么写呢？<ul>
+<li>条件接上题，需要这一年的夏季平均气温，现在该怎么写呢？</li>
+</ul>
+</li>
+<li><code>t2(144,73,12，61)</code>是61年的每月平均气温，我们需要求取每个月61年平均气温，应该怎么写呢？<ul>
+<li>条件接上题，现在我们需要61年春季的平均气温，该怎么写呢？</li>
+</ul>
+</li>
+<li><code>R(144,73)</code>是某一个场r检验的值，现在我们需要将R中大于2.1的元素对应位置的<code>sig(144,73)</code>赋值为1，<br>其余部分赋值为0，该怎么写？</li>
+</ol>
+
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/fortran/" title="fortran">fortran</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2018/12/01/windows-wsl-start/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">初探Win10 WSL(Windows Subsystem for Linux)</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2018/12/01/wrf-configuration/">
+                <span class="nav-default">WRF和WPS部分配置选项简介</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container"></div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2019
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a href="#">Sonic Young</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a rel="nofollow" target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+
+
+</html>

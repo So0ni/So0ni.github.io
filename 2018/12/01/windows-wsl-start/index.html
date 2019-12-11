@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>没有干货</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?5db7d6949cb6e2ddc3c1c6a7b30e8e09";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <div class="header-title">
+
+        </div>
+        <nav class="header-nav">
+            
+                <a href="/" class="header-nav-link">
+                    首页
+                </a>
+            
+
+            
+                <a href="/archives" class="header-nav-link">
+                    归档
+                </a>
+            
+
+            
+                <a href="/tags" class="header-nav-link">
+                    标签
+                </a>
+            
+
+            
+                <a href="/about/" class="header-nav-link">
+                    关于
+                </a>
+            
+        </nav>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">Sonic Young's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+            <h2 class="title">初探Win10 WSL(Windows Subsystem for Linux)</h2>
+            <div class="post-meta">
+                <span class="post-time">2018-12-01</span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始"><span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置apt"><span class="toc-text">配置apt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#窗口配置"><span class="toc-text">窗口配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Xming"><span class="toc-text">Xming</span></a></li></ol></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>做气象方面的研究很多时候需要Linux环境，然而很多时候Cygwin却很不好用。<br>如果装双系统来回切换，也是很麻烦。用虚拟机又担心性能损耗。</p>
+<p>那么对于用Win10的同学来说，救星就是WSL(Windows Subsystem for Linux)。</p>
+<blockquote>
+<p>WSL(Windows Subsystem for Linux) 适用于Linux的Windows子系统</p>
+</blockquote>
+<p>现在NCL官网也推荐win10用户使用WSL了。(实测安装NCL、Grads和WRF毫无问题，之前那篇WRF编译安装的文章就是基于WSL进行)</p>
+<a id="more"></a>
+<hr>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>打开 <code>Microsoft Store</code> , 搜索 <code>Linux</code> ，我们选择<code>Ubuntu 18.04 LTS</code>。<br>如果没有微软账号，那么需要免费注册一个。然后开始等待下载安装。</p>
+<p><img src="https://raw.githubusercontent.com/So0ni/gh-pages/2018/12/01/windows-wsl-start/msstore.jpg" alt="MicrosoftStore页面"></p>
+<p>WSL里的Ubuntu已经自带git,vim,ssh等常用工具。</p>
+<p>安装完成后我们可以在开始菜单里找到<code>Ubuntu 18.04</code>。</p>
+<p>但是现在我们还差一步</p>
+<blockquote>
+<p><code>控制面板\所有控制面板项\程序和功能</code> 中选择 <code>启用或者关闭Windows功能</code>找到<code>适用于Linux的Windows子系统</code>并勾选,然后 <code>确定</code>选择<code>立即重新启动</code></p>
+</blockquote>
+<p>重启之后打开<code>Ubuntu 18.04</code>就可以使用了,根据提示输入用户名,两次输入密码(密码输入看不见)就可以进入Ubuntu了。</p>
+<hr>
+<h3 id="配置apt"><a href="#配置apt" class="headerlink" title="配置apt"></a>配置apt</h3><p>由于自带的官方源在国内网络环境太慢，所以我们需要替换成国内镜像。<br>这里我们选择清华大学开源镜像站的源(清华源同时支持IPv4和IPv6，同时对教育网友好)。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+<p>把里面的内容全部替换成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+<p>保存，运行<code>sudo apt update</code>更新源。</p>
+<hr>
+<h3 id="窗口配置"><a href="#窗口配置" class="headerlink" title="窗口配置"></a>窗口配置</h3><p>自带的大黑窗口太难看？ 没问题，我们来美化一下。</p>
+<p>在Ubuntu窗口上方白色标题栏处点击鼠标右键，选择<code>属性</code>，在<code>字体选项卡</code>里我么将字体改为<code>黑体</code>，字号改为<code>17</code>。</p>
+<p>在<code>颜色选项卡</code>里选择<code>屏幕背景</code>，我的设置是<code>红</code> <code>绿</code> <code>蓝</code>分别为<code>25</code>、<code>30</code>、<code>25</code>，不透明度<code>85%</code> 。</p>
+<p>现在更好看了吧</p>
+<hr>
+<h3 id="Xming"><a href="#Xming" class="headerlink" title="Xming"></a>Xming</h3><p>使用NCL和Grads的时候我们会需要用到X11，所以我们还需要安装Xming。 </p>
+<p>使用X11绘图前需要先启动Xming</p>
+<blockquote>
+<p>接下来就和普通ubuntu shell一样可以正常使用了</p>
+</blockquote>
+
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/system/" title="system">system</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+        
+            <a class="next" href="/2018/12/01/fortran-vectorization/">
+                <span class="nav-default">fortran向量化简单教程</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container"></div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2019
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a href="#">Sonic Young</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a rel="nofollow" target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+
+
+</html>

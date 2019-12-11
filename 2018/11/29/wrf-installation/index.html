@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>没有干货</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_859455_eaq7v6w8ktj.css">
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?5db7d6949cb6e2ddc3c1c6a7b30e8e09";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+<header class="header">
+    <div class="header-inner">
+        <div class="header-title">
+
+        </div>
+        <nav class="header-nav">
+            
+                <a href="/" class="header-nav-link">
+                    首页
+                </a>
+            
+
+            
+                <a href="/archives" class="header-nav-link">
+                    归档
+                </a>
+            
+
+            
+                <a href="/tags" class="header-nav-link">
+                    标签
+                </a>
+            
+
+            
+                <a href="/about/" class="header-nav-link">
+                    关于
+                </a>
+            
+        </nav>
+    </div>
+</header>
+<header class="mobile-header">
+    <div class="mobile-nav">
+        <div class="mobile-nav-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="mobile-nav-title">
+            <a href="/" class="mobile-nav-title-link">Sonic Young's Blog</a>
+        </div>
+
+    </div>
+    <nav class="mobile-menu">
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-home"></i>
+                <a href="/" class="mobile-nav-link">首页</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-archive"></i>
+                <a href="/archives" class="mobile-nav-link">归档</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-tag"></i>
+                <a href="/tags" class="mobile-nav-link">标签</a>
+            </li>
+            <li class="mobile-menu-item">
+                <i class="iconfont icon-about"></i>
+                <a href="/about/" class="mobile-nav-link">关于</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="main">
+    <div class="content-inner">
+        <div class="posts">
+    <article class="post-whole">
+        <div class="post-title">
+            <h2 class="title">Ubuntu 18.04 x64 单机多核并行WRF和WPS编译安装</h2>
+            <div class="post-meta">
+                <span class="post-time">2018-11-29</span>
+                
+                <span class="post-visit"> 阅读次数：<span id="busuanzi_value_page_pv"></span></span>
+            </div>
+        </div>
+        <div class="post-toc" id="post-toc">
+    <strong class="post-toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装环境"><span class="toc-text">安装环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#依赖包"><span class="toc-text">依赖包</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#主程序"><span class="toc-text">主程序</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始安装"><span class="toc-text">开始安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装二进制依赖"><span class="toc-text">安装二进制依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译安装其他依赖"><span class="toc-text">编译安装其他依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hdf5-1-10-4"><span class="toc-text">hdf5-1.10.4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#netcdf-c-4-6-2"><span class="toc-text">netcdf-c-4.6.2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#netcdf-fortran-4-4-4"><span class="toc-text">netcdf-fortran-4.4.4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#libjpeg-turbo"><span class="toc-text">libjpeg-turbo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OpenMPI-1-6-5"><span class="toc-text">OpenMPI-1.6.5</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译主程序"><span class="toc-text">编译主程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#WRFV3-9-1-1"><span class="toc-text">WRFV3.9.1.1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WPSV3-9-1"><span class="toc-text">WPSV3.9.1</span></a></li></ol></li></ol></li></ol>
+    <div class="back-to-top" id="back-to-top">
+        <a href="javascript:void(0);">回到顶部</a>
+    </div>
+</div>
+        <div class="post-content">
+            <p>WRF全称Weather Research and Forecasting Model, 是一个天气研究与预报模型.可以用来进行精细尺度的天气模拟与预报。<br>WPS全称WRF Pre-processing System，即WRF预处理系统，用来为WRF模型准备输入数据；<br>如果只是做理想实验(idealized modeling)，就不需要用WPS处理真实数据。</p>
+<p>除了WPS与WRF两大核心模块外，WRF系统还有很多附加模块：比如用于数据同化的WRF-DA，用于化学传输的WRF-chem，用于林火模拟的WRF-fire。</p>
+<h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><ul>
+<li>Ubuntu 18.04 x64 LTS</li>
+<li>Intel Core i5-4210M</li>
+</ul>
+<a id="more"></a>
+<h3 id="依赖包"><a href="#依赖包" class="headerlink" title="依赖包"></a>依赖包</h3><ul>
+<li>gfortran</li>
+<li>zlib1g-dev</li>
+<li>libpng-dev </li>
+<li>libjasper1</li>
+<li>libjasper-dev</li>
+<li>libjpeg-turbo</li>
+<li>nasm</li>
+<li>cmake</li>
+<li>build-essential</li>
+<li>m4</li>
+<li>hdf5-1.10.4</li>
+<li>netcdf-c-4.6.2</li>
+<li>netcdf-fortran-4.4.4</li>
+<li>openmpi-1.6.5</li>
+</ul>
+<h4 id="主程序"><a href="#主程序" class="headerlink" title="主程序"></a>主程序</h4><ul>
+<li>WRFV3.9.1.1</li>
+<li>WPSV3.9.1</li>
+</ul>
+<h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><h3 id="安装二进制依赖"><a href="#安装二进制依赖" class="headerlink" title="安装二进制依赖"></a>安装二进制依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y build-essential gfortran zlib1g-dev m4 libpng-dev nasm cmake</span><br></pre></td></tr></table></figure>
+<p>18.04的默认软件库里没有libjasper-dev包，但是我们可以借用16.04的包，所以我们先添加16.04的源，然后继续安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository <span class="string">"deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu xenial-security main"</span></span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install libjasper1 libjasper-dev</span><br></pre></td></tr></table></figure>
+<h3 id="编译安装其他依赖"><a href="#编译安装其他依赖" class="headerlink" title="编译安装其他依赖"></a>编译安装其他依赖</h3><h4 id="hdf5-1-10-4"><a href="#hdf5-1-10-4" class="headerlink" title="hdf5-1.10.4"></a>hdf5-1.10.4</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">wget -c https://s3.amazonaws.com/hdf-wordpress-1/wp-content/uploads/manual/HDF5/HDF5_1_10_4/hdf5-1.10.4.tar.gz</span><br><span class="line">tar -zxf hdf5-1.10.4.tar.gz</span><br><span class="line"><span class="built_in">cd</span> hdf5-1.10.4</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span> --<span class="built_in">enable</span>-fortran --<span class="built_in">enable</span>-cxx</span><br><span class="line">make -j4</span><br><span class="line">make check</span><br><span class="line">sudo make install</span><br><span class="line">sudo make check-install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br></pre></td></tr></table></figure>
+<h4 id="netcdf-c-4-6-2"><a href="#netcdf-c-4-6-2" class="headerlink" title="netcdf-c-4.6.2"></a>netcdf-c-4.6.2</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget -c https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-4.6.2.tar.gz</span><br><span class="line">tar -zxf netcdf-c-4.6.2.tar.gz</span><br><span class="line"><span class="built_in">cd</span> netcdf-c-4.6.2</span><br><span class="line">./configure --<span class="built_in">enable</span>-netcdf-4 LDFLAGS=<span class="string">"-L/usr/local/lib"</span> CPPFLAGS=<span class="string">"-I/usr/local/include"</span></span><br><span class="line">make -j4</span><br><span class="line">sudo make install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br></pre></td></tr></table></figure>
+<h4 id="netcdf-fortran-4-4-4"><a href="#netcdf-fortran-4-4-4" class="headerlink" title="netcdf-fortran-4.4.4"></a>netcdf-fortran-4.4.4</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget -c https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-fortran-4.4.4.tar.gz</span><br><span class="line">tar -zxf netcdf-fortran-4.4.4.tar.gz</span><br><span class="line"><span class="built_in">cd</span> netcdf-fortran-4.4.4</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span> LDFLAGS=<span class="string">"-L/usr/local/lib"</span> CPPFLAGS=<span class="string">"-I/usr/local/include"</span> FC=gfortran</span><br><span class="line">make -j4</span><br><span class="line">sudo make install </span><br><span class="line"><span class="built_in">cd</span> ../</span><br></pre></td></tr></table></figure>
+<p>netcdf从某一版本开始就拆分成了fortran和c版本，我们都需要安装。</p>
+<h4 id="libjpeg-turbo"><a href="#libjpeg-turbo" class="headerlink" title="libjpeg-turbo"></a>libjpeg-turbo</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/libjpeg-turbo/libjpeg-turbo.git</span><br><span class="line"><span class="built_in">cd</span> libjpeg-turbo</span><br><span class="line">cmake -G<span class="string">"Unix Makefiles"</span> -DWITH_JPEG8=1 -DCMAKE_INSTALL_LIBDIR:PATH=/usr/<span class="built_in">local</span>/</span><br><span class="line">make -j4</span><br><span class="line">sudo make install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br></pre></td></tr></table></figure>
+<p>libjpeg是一款开源的jpeg压缩解压库。libjpeg-turbo是它的升级版，性能有所提升.<br>libjpeg-turbo是libjpeg的一个分支，SIMD指令来加速JPEG编码和解码基础效率。<br>现在大部分项目使用libjpeg-turbo而不是libjpeg。</p>
+<h4 id="OpenMPI-1-6-5"><a href="#OpenMPI-1-6-5" class="headerlink" title="OpenMPI-1.6.5"></a>OpenMPI-1.6.5</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget -c https://download.open-mpi.org/release/open-mpi/v1.6/openmpi-1.6.5.tar.gz</span><br><span class="line">tar -zxf openmpi-1.6.5.tar.gz</span><br><span class="line"><span class="built_in">cd</span> openmpi-1.6.5</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span></span><br><span class="line">make all -j4</span><br><span class="line">sudo make install</span><br><span class="line"><span class="built_in">cd</span> ../</span><br></pre></td></tr></table></figure>
+<p>安装完所有依赖后，我们更新一下动态库链接。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/ldconfig -v</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="编译主程序"><a href="#编译主程序" class="headerlink" title="编译主程序"></a>编译主程序</h3><h4 id="WRFV3-9-1-1"><a href="#WRFV3-9-1-1" class="headerlink" title="WRFV3.9.1.1"></a>WRFV3.9.1.1</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget -c http://www2.mmm.ucar.edu/wrf/src/WRFV3.9.1.1.TAR.gz</span><br><span class="line">tar -zxf WRFV3.9.1.1.TAR.gz</span><br><span class="line"><span class="built_in">cd</span> WRFV3</span><br><span class="line">./configure</span><br><span class="line">./compile wrf</span><br><span class="line">./compile em_real</span><br><span class="line"><span class="built_in">cd</span> ../</span><br></pre></td></tr></table></figure>
+<p>编译前配置时，会出现很多编译选项供选择。每一个选项的前半部分通常是在描述编译器与运行环境，根据计算机实际情况选择即可。<br>后半部分是并行选项： </p>
+<ul>
+<li>serial  串行计算。</li>
+<li>smpar  内存共享并行计算(shared memory option)，即使用openMP，大部分多核电脑都支持这项功能。</li>
+<li>dmpar  分布式并行计算(distributed memory option)，即使用MPI 进行并行计算，主要用在计算集群，单个电脑就没必要用了。</li>
+<li>dm+sm  同时使用openMP与MPI两种并行方式。</li>
+</ul>
+<p>由于我们目标是单机多核并行计算，且我们是x64 Ubuntu使用gfortran编译器，所以我们选择<code>33</code>。</p>
+<p>选择完编译选项后，会出现提示选择嵌套选项，一般就选 basic。</p>
+<ul>
+<li>1=basic, 有嵌套</li>
+<li>2=preset moves, 指定移动网格</li>
+<li>3=vortex following 自动移动网格</li>
+</ul>
+<p>如果编译正常，在main目录下会看到</p>
+<ul>
+<li>ndown.exe</li>
+<li>nup.exe</li>
+<li>real.exe</li>
+<li>tc.exe</li>
+<li>wrf.exe</li>
+</ul>
+<p>这5个可执行程序</p>
+<p>如果遇到 (反正我是没遇到)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start_em.f90:209.60:ALLOCATE( clat_glob(ids:ide,jds:jde), STAT=alloc_status, ERRMSG=alloc_err_1 Error: Syntax error <span class="keyword">in</span> DEALLOCATE statement at (1)1234start_em.f90:209.60: ALLOCATE( clat_glob(ids:ide,jds:jde), STAT=alloc_status, ERRMSG=alloc_err_ 1Error: Syntax error <span class="keyword">in</span> DEALLOCATE statement at (1)</span><br></pre></td></tr></table></figure>
+<p>可能是因为使用的fortran编译器不支持ALLOCATE函数的ERRMSG参数，修改源代码文件<code>start_em.F</code>中的代码，去掉</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">, ERRMSG=alloc_err_message</span><br></pre></td></tr></table></figure>
+<p>然后重新编译。</p>
+<h4 id="WPSV3-9-1"><a href="#WPSV3-9-1" class="headerlink" title="WPSV3.9.1"></a>WPSV3.9.1</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget -c http://www2.mmm.ucar.edu/wrf/src/WPSV3.9.1.TAR.gz</span><br><span class="line">tar -zxf WPSV3.9.1.TAR.gz</span><br><span class="line"><span class="built_in">cd</span> WPS</span><br><span class="line">./configure</span><br><span class="line">sed -i <span class="string">"s/-lnetcdff -lnetcdf/-lnetcdff -lnetcdf -lgomp/g"</span> configure.wps</span><br><span class="line">./compile</span><br><span class="line"><span class="built_in">cd</span> ../</span><br></pre></td></tr></table></figure>
+<p><strong>注意：WPS编译时会在相同目录下寻找已经编译好的WRF目录，也就是说，源代码目录 WPS 要跟 WRFV3 放在同一个父目录下</strong></p>
+<p>由于WPS只有多机并行和单机串行方式，所以编译选项选择时我们选择<code>1</code> 单机串行。</p>
+<p><code>sed -i &quot;s/-lnetcdff -lnetcdf/-lnetcdff -lnetcdf -lgomp/g&quot; configure.wps</code></p>
+<p>目的是为了在<code>-lnetcdff -lnetcdf</code>后面添加<code>-lgomp</code>， 这个能解决OpenMP报错问题。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">undefined reference to `GOMP_parallel<span class="string">' ...</span></span><br></pre></td></tr></table></figure>
+<p>编译成功后，最后会在WPS代码根目录得到以下三个程序链接</p>
+<ul>
+<li>geogrid.exe -&gt; geogrid/src/geogrid.exe</li>
+<li>ungrib.exe -&gt; ungrib/src/ungrib.exe </li>
+<li>metgrid.exe -&gt; metgrid/src/metgrid.exe</li>
+</ul>
+<p>到此我们就成功编译了WRF和WPS。</p>
+<p>注意： WPS从V3.8开始，将GEOG地形数据场插值数据源换成了<br><code>30-arc-second USGS GMTED2010</code> <code>MODIS FPAR</code> <code>21-class MODIS</code>。<br>如果需要使用V3.7以及之前的地形文件数据，需要把<code>namelist.wps</code>文件中的<br><code>geog_data_res</code>选项设置为<code>= &#39;gtopo_10m+usgs_10m+nesdis_greenfrac+10m&#39;,&#39;gtopo_2m+usgs_2m+nesdis_greenfrac+2m&#39;,</code>。<br>之前版本的<code>geog_data_res=&#39;10m&#39;,&#39;2m&#39;,</code>不再可用。</p>
+
+        </div>
+        
+        <div class="post-tag">
+            
+            <a class="tag" href="/tags/meteorology/" title="meteorology">meteorology</a>
+            
+        </div>
+        
+    </article>
+</div>
+<div class="paginator">
+    
+        
+            <a class="prev" href="/2018/11/30/wrf-first-running/">
+                <i class="iconfont icon-prev"></i>
+                <span class="nav-default">记第一次WRF运转</span>
+                <span class="nav-mobile">上一篇</span>
+            </a>
+        
+        
+            <a class="next" href="/2018/11/29/site-changelog/">
+                <span class="nav-default">更新日志</span>
+                <span class="nav-mobile">下一篇</span>
+                <i class="iconfont icon-next"></i>
+            </a>
+        
+    
+</div>
+<div id="comment-container"></div>
+    </div>
+</div>
+<footer class="footer-social">
+    
+
+    
+
+    
+
+    <div class="footer-copyright">
+        <p class="time-line">
+            &copy;
+            
+            
+            2019
+            &nbsp;<i class="iconfont icon-heart"></i>&nbsp;
+            <a href="#">Sonic Young</a>
+        </p>
+        <p class="theme-info">
+            Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>  |  Theme -
+            <a rel="nofollow" target="_blank" href="https://github.com/iJinxin/hexo-theme-sky">Sky</a>
+        </p>
+    </div>
+</footer>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+
+
+</html>
